@@ -17,6 +17,11 @@ def subtract(a, b):
     """减法"""
     return a - b
 
+def multiply(a, b):
+    """乘法"""
+    return a * b
+
+
 
 def show_menu():
     """显示菜单"""
@@ -25,6 +30,7 @@ def show_menu():
     print("=" * 30)
     print("  1. 加法")
     print("  2. 减法")
+    print("  3. 乘法")
     print("  0. 退出")
     print("=" * 30)
 
