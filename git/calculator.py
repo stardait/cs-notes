@@ -45,7 +45,7 @@ def main():
             print("再见！")
             break
 
-        if choice not in ("1", "2"):
+        if choice not in ("1", "2", "3"):
             print("无效选项，请重新选择\n")
             continue
 
@@ -59,9 +59,12 @@ def main():
         if choice == "1":
             result = add(a, b)
             symbol = "+"
-        else:
+        elif choice == "2":
             result = subtract(a, b)
             symbol = "-"
+        else:
+            result = multiply(a, b)
+            symbol = "*"
 
         print(f"\n>>> {a} {symbol} {b} = {result}\n")
 
