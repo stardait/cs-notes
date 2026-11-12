@@ -386,15 +386,41 @@ if flag := value / 2 > 3:            # 错：flag 拿到的是 bool，不是 3.5
 # ==============================================================================
 #
 # 练习 1：给定 3672 秒，用 divmod 换算成「x 时 x 分 x 秒」
+print("\n练习 1：秒数换算")
+total_seconds = 3672
+hours, remainder = divmod(total_seconds, 3600)
+minutes, seconds = divmod(remainder, 60)
+print(f"{hours} 时 {minutes} 分 {seconds} 秒")
+
 # 练习 2：判断闰年（能被 4 整除但不能被 100 整除，或能被 400 整除）
 #         提示：用 and / or / not 组合，注意括号
+print("\n练习 2：判断闰年")
+year = 2024
+is_leap_year = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+print(f"{year} 是闰年吗？{is_leap_year}")
+
 # 练习 3：用位运算玩开关灯：3 个灯初始全灭，打开 1 号和 3 号，再关掉 1 号，
 #         最后打印二进制状态和十进制数字
+print("\n练习 3：开关灯")
+lights = 0b000  # 初始全灭
+lights |= 0b101  # 打开 1 号和 3 号
+lights &= ~0b001  # 关掉 1 号
+print(f"灯的状态：{lights:03b}（{lights}）")
+
 # 练习 4：用海象运算符改写下面这段，让它只调用一次 len()
 #             data = [1, 2, 3, 4]
 #             if len(data) > 3:
 #                 print("太长了：", len(data))
+print("\n练习 4：海象运算符")
+data = [1, 2, 3, 4]
+if (length := len(data)) > 3:
+    print("太长了：", length)
+
 # 练习 5：不用 abs()，写表达式求一个负数的绝对值
-#
+print("\n练习 5：求绝对值")
+num = -42
+abs_value = num if num >= 0 else -num
+print(f"{num} 的绝对值是 {abs_value}")
+
 # 【下一步】03_输入输出与格式化.py
 # ==============================================================================
