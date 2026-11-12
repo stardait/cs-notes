@@ -21,7 +21,12 @@ def multiply(a, b):
     """乘法"""
     return a * b
 
-
+def divide(a, b):
+    """除法"""
+    if b == 0:
+        print("错误：除数不能为零")
+        return None
+    return a / b
 
 def show_menu():
     """显示菜单"""
@@ -31,6 +36,7 @@ def show_menu():
     print("  1. 加法")
     print("  2. 减法")
     print("  3. 乘法")
+    print("  4. 除法")
     print("  0. 退出")
     print("=" * 30)
 
@@ -45,7 +51,7 @@ def main():
             print("再见！")
             break
 
-        if choice not in ("1", "2", "3"):
+        if choice not in ("1", "2", "3", "4"):
             print("无效选项，请重新选择\n")
             continue
 
@@ -62,9 +68,12 @@ def main():
         elif choice == "2":
             result = subtract(a, b)
             symbol = "-"
-        else:
+        elif choice == "3":
             result = multiply(a, b)
             symbol = "*"
+        else:
+            result = divide(a, b)
+            symbol = "/"
 
         print(f"\n>>> {a} {symbol} {b} = {result}\n")
 
