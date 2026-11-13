@@ -375,10 +375,45 @@ print(f"{original} 共有 {digits} 位，各位数字之和是 {digit_sum}")
 # ==============================================================================
 #
 # 练习 1：用 while 打印 1 到 10，再打印 10 到 1（两个循环，都要有正确的边界）
+i = 1
+while i <= 10:
+    print(i, end=" ")
+    i += 1
+print()
+
+i = 10
+while i >= 1:
+    print(i, end=" ")
+    i -= 1
+print()
 # 练习 2：求 1 到 50 中所有能被 3 整除的数的和（提示：条件里用 % 3 == 0）
+i = 1
+total = 0
+while i <= 50:
+    if i % 3 == 0:
+        total += i
+    i += 1
+print(f"1 到 50 中能被 3 整除的数的和 = {total}")
 # 练习 3：用 while 计算 2 的 10 次方（不许用 **，用累乘），答案是 1024
+i = 1
+result = 1
+while i <= 10:
+    result *= 2
+    i += 1
+print(f"2 的 10 次方 = {result}")
 # 练习 4：给定一个整数，用 while 判断它是不是「回文数」（正着读反着读一样，
 #         如 12321、1221）。提示：先反转，再和原数比较
+num = 126652
+fan_num = num
+fan = 0
+while num > 0:
+    last_num = num % 10
+    fan = fan * 10 + last_num
+    num //= 10
+if fan_num == fan:
+    print(f"{fan_num} 是回文数")
+else:
+    print(f"{fan_num} 不是回文数")
 # 练习 5：用 while 求 1 + 1/2 + 1/4 + 1/8 + ... 前 10 项之和（用浮点，保留 4 位小数）
 # 练习 6：猜猜下面这段会循环几次，再运行验证：
 #             i = 0
