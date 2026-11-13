@@ -400,7 +400,7 @@ for i in range(len(num)):
 num = [1900,2000,2024]
 for i in range(len(num)):
     year = num[i]
-    if ((year % 4) and (year % 100 != 0)) or (year % 400 == 0):
+    if ((year % 4 == 0) and (year % 100 != 0)) or (year % 400 == 0):
         print(f"{year} 年是闰年")
     else:
         print(f"{year} 年不是闰年")
