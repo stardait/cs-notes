@@ -66,17 +66,17 @@ introduce("小明", age=18, city="北京")           # 位置 + 关键字混着�
 #   小明，18 岁，来自北京
 
 
-print("\n--- 两种传参错误 ---")
+# print("\n--- 两种传参错误 ---")
 
-try:
-    introduce("小明", 18, "北京", city="上海")   # 按位置给了 city，又按名字给一次
-except TypeError as e:
-    print(f"  重复传值：{e}")
+# try:
+#     introduce("小明", 18, "北京", city="上海")   # 按位置给了 city，又按名字给一次
+# except TypeError as e:
+#     print(f"  重复传值：{e}")
 
-try:
-    introduce("小明", 18, "北京", gender="男")   # 函数根本没有 gender 这个参数
-except TypeError as e:
-    print(f"  名字写错：{e}")
+# try:
+#     introduce("小明", 18, "北京", gender="男")   # 函数根本没有 gender 这个参数
+# except TypeError as e:
+#     print(f"  名字写错：{e}")
 
 # 输出：
 # --- 两种传参错误 ---
@@ -294,10 +294,10 @@ print(f"  {create_user('小明', age=18)}")
 print(f"  {create_user('小红', age=20, city='北京')}")
 print(f"  {create_user(name='小刚', age=22, city='广州')}")
 
-try:
-    create_user("小李", 25)
-except TypeError as e:
-    print(f"  反例：{e}")
+# try:
+#     create_user("小李", 25)
+# except TypeError as e:
+#     print(f"  反例：{e}")
 
 # 输出：
 # --- 仅关键字参数：星号后面那一段 ---
@@ -326,15 +326,15 @@ def divide(a, b, /):
 print("\n--- 仅位置参数：斜杠前面那一段 ---")
 print(f"  divide(10, 4) = {divide(10, 4)}")
 
-try:
-    divide(a=10, b=4)
-except TypeError as e:
-    print(f"  用关键字调用：{e}")
+# try:
+#     divide(a=10, b=4)
+# except TypeError as e:
+#     print(f"  用关键字调用：{e}")
 
-try:
-    len(obj="abc")
-except TypeError as e:
-    print(f"  内置函数也一样：{e}")
+# try:
+#     len(obj="abc")
+# except TypeError as e:
+#     print(f"  内置函数也一样：{e}")
 
 # 输出：
 # --- 仅位置参数：斜杠前面那一段 ---

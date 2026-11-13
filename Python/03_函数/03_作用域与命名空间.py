@@ -85,10 +85,10 @@ print("\n--- 局部变量出了函数就没了 ---")
 local_demo()
 print(f"  函数外的 number = {number}")
 
-try:
-    print(local_var)
-except NameError as e:
-    print(f"  在函数外访问局部变量：{e}")
+# try:
+#     print(local_var)
+# except NameError as e:
+#     print(f"  在函数外访问局部变量：{e}")
 
 # 输出：
 # --- 局部变量出了函数就没了 ---
@@ -250,16 +250,16 @@ print(f"  最终 counter = {counter}")
 total = 0
 
 
-def broken_add():
-    """想改全局 total，但忘了写 global。"""
-    try:
-        total = total + 1       # 被判定为局部变量，但赋值前就读了它
-    except UnboundLocalError as e:
-        print(f"  报错：{e}")
+# def broken_add():
+#     """想改全局 total，但忘了写 global。"""
+#     try:
+#         total = total + 1       # 被判定为局部变量，但赋值前就读了它
+#     except UnboundLocalError as e:
+#         print(f"  报错：{e}")
 
 
-print("\n--- 忘了写 global ---")
-broken_add()
+# print("\n--- 忘了写 global ---")
+# broken_add()
 
 # 输出：
 # --- 忘了写 global ---
@@ -354,7 +354,7 @@ triple = make_multiplier(3)
 
 print(f"  double(10) = {double(10)}")
 print(f"  triple(10) = {triple(10)}")
-print(f"  double 记住的 n = {double.__closure__[0].cell_contents}")
+# print(f"  double 记住的 n = {double.__closure__[0].cell_contents}")
 
 # 输出：
 # --- 闭包：函数记住了外面的变量 ---
