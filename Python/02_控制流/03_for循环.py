@@ -385,14 +385,43 @@ print(f"最大值 {biggest} 在列表中的下标是 {biggest_index}")
 # ==============================================================================
 #
 # 练习 1：用 for 和 range 打印 1 到 20，每行一个；再用 range 打印 20 到 1
+for i in range(1, 21):
+    print(i)
+for i in range(20, 0, -1):
+    print(i)
 # 练习 2：用 for 求 1 到 100 中所有偶数之和，再用 range 的步长参数写一遍
+total = 0
+for i in range(2, 101, 2):
+    total += i
+print(f"1 到 100 中所有偶数之和 = {total}")
 # 练习 3：给定 names = ["小明", "小红", "小刚"]，
 #         用 enumerate 打印「第 N 位：名字」，N 从 1 开始
+names = ["小明", "小红", "小刚"]
+for index, name in enumerate(names,start=1):
+    print(f"第 {index} 位：{name}")
 # 练习 4：给定两个列表 subjects 和 scores，用 zip 输出「科目：分数」，
 #         再故意让两个列表长度不同，观察结果少了什么
+subjects = ["语文", "数学", "英语"]
+scores = [92, 85]
+for subject, score in zip(subjects, scores):
+    print(f"{subject}：{score}")
 # 练习 5：给定一个列表，用 for-else 判断其中是否包含负数，
-#         包含就打印第一个负数，不包含就打印「全是正数」
+list =  [1, 2, 3, 4, -5, 6]
+for i in list:
+    if i<0:
+        print(f"第一个负数是：{i}")
+        break
+else:
+    print("全是正数")
 # 练习 6：用「打擂台」求列表中的最小值，以及它第一次出现的下标
+list = [23, 67, 12, 89, 45]
+smallest = list[0]
+smallest_index = 0
+for index, n in enumerate(list):
+    if n < smallest:
+        smallest = n
+        smallest_index = index
+print(f"最小值 {smallest} 在列表中的下标是 {smallest_index}")
 #
 # 【下一步】04_break与continue.py
 # ==============================================================================
