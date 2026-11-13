@@ -388,6 +388,13 @@ print_report(students)
 #
 # 练习 1：写 `prime_factors(n)`，返回 n 的所有质因数（如 12 → [2, 2, 3]）。
 #         提示：从 2 开始试除，除尽就 append 并继续，除不尽就加一。
+def prime_factors(n):
+    zys = []
+    for i in range(2,n+1):
+        while n%i == 0:
+            zys.append(i)
+            n //= i
+    return zys
 # 练习 2：写 `factorial_digits(n)`，返回 n! 有多少位数字（提示：len(str(factorial(n)))）。
 # 练习 3：写 `reverse_words(sentence)`，把句子里的单词顺序倒过来，
 #         但每个单词本身不反转（"hello world" → "world hello"）。

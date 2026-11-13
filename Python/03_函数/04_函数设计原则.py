@@ -314,15 +314,15 @@ def calculate_bmi(weight_kg, height_m):
     return round(weight_kg / height_m ** 2, 1)
 
 
-print("\n--- 文档字符串：参数、返回、异常 ---")
-print(f"  70kg / 1.75m 的 BMI = {calculate_bmi(70, 1.75)}")
+# print("\n--- 文档字符串：参数、返回、异常 ---")
+# print(f"  70kg / 1.75m 的 BMI = {calculate_bmi(70, 1.75)}")
 
-try:
-    calculate_bmi(70, 0)
-except ValueError as e:
-    print(f"  非法输入：{e}")
+# try:
+#     calculate_bmi(70, 0)
+# except ValueError as e:
+#     print(f"  非法输入：{e}")
 
-print(f"  docstring 第一行：{calculate_bmi.__doc__.splitlines()[0]}")
+# print(f"  docstring 第一行：{calculate_bmi.__doc__.splitlines()[0]}")
 
 # 输出：
 # --- 文档字符串：参数、返回、异常 ---
