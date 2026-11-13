@@ -388,12 +388,62 @@ else:                                       # 其余都不是
 # ==============================================================================
 #
 # 练习 1：判断一个整数是正数、负数还是零（分别用 0、-5、7 测试）
+num = [0,-5,7]
+for i in range(len(num)):
+    if num[i] > 0:
+        print(f"{num[i]} 是正数")
+    elif num[i] < 0:
+        print(f"{num[i]} 是负数")
+    else:
+        print(f"{num[i]} 是零")
 # 练习 2：不看我上面的代码，自己写闰年判断，并验证 1900（不是）、2000（是）、2024（是）
+num = [1900,2000,2024]
+for i in range(len(num)):
+    year = num[i]
+    if ((year % 4) and (year % 100 != 0)) or (year % 400 == 0):
+        print(f"{year} 年是闰年")
+    else:
+        print(f"{year} 年不是闰年")
 # 练习 3：用条件表达式把百分制成绩转成「及格 / 不及格」，
 #         再改成五级制（优秀 / 良好 / 中等 / 及格 / 不及格），这次用 if / elif
+score = [95,85,75,65,55]
+for i in range(len(score)):
+    if score[i] >= 90:
+        level = "优秀"
+    elif score[i] >= 80:
+        level = "良好"
+    elif score[i] >= 70:
+        level = "中等"
+    elif score[i] >= 60:
+        level = "及格"
+    else:
+        level = "不及格"
+    print(f"{score[i]} 分 → {level}")
 # 练习 4：商场打折 —— 会员满 200 打 8 折，会员不满 200 打 9 折，
 #         非会员满 500 打 95 折，其余原价。给定 is_member 和 amount，输出实付金额
+is_member = True
+amount = 300
+if is_member:
+    if amount >= 200:
+        discount = 0.8
+    else:
+        discount = 0.9
+else:
+    if amount >= 500:
+        discount = 0.95
+    else:
+        discount = 1.0
+print(f"实付金额：{amount * discount:.2f} 元")
+
 # 练习 5：判断一个字符是元音还是辅音（提示：`if ch in "aeiouAEIOU"`）
+ch = "aeiouAEIOU"
+src = "sadjndaksiudnkasjndHISNBLSAJD"
+
+for i in src:
+    if i in ch:
+        print(f"{i} 是元音")
+    else:
+        print(f"{i} 是辅音")
 #
 # 【下一步】02_while循环.py
 # ==============================================================================
