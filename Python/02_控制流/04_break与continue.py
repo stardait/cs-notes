@@ -380,20 +380,50 @@ for i in range(5):
 # ==============================================================================
 #
 # 练习 1：用 for + break 在列表 [4, 9, 15, 22, 30] 中找第一个能被 5 整除的数
+for i in [4, 9, 15, 22, 30]:
+    if i % 5 == 0:
+        print(f"第一个能被 5 整除的数是：{i}")
+        break
 # 练习 2：用 for + continue 打印 1 到 30 中所有不是 3 的倍数的数
+for i in range(1, 31):
+    if i%3 != 0:
+        print(i, end=" ")
 # 练习 3：判断一个字符串里有没有数字字符，找到就 break 并说明是哪一个
+s = "hello123world"
+num = "0123456789"
+for char in s:
+    if char in num:
+        print(f"找到数字字符：{char}")
+        break
 # 练习 4：用 while True + break 模拟「不断取钱」：余额 1000，每次取 300，
 #         余额不足时打印「余额不足」并退出（不许用 input）
+balance = 1000
+while True:
+    if balance < 300:
+        print("余额不足")
+        break
+    else:
+        balance -= 300
+    print(f"取款成功，剩余余额：{balance}")
 # 练习 5：用两层嵌套循环找出 1~20 中第一对「乘积大于 100」的整数组合，
 #         并分别用「标志变量」和「break」两种方式退出两层循环
+for i in range(1, 21):
+    for j in range(1, 21):
+        if i * j > 100:
+            print(f"第一对乘积大于 100 的整数组合是：({i}, {j})")
+            break
+    else:
+        continue
+    break
 # 练习 6：下面这段会输出什么？先猜再运行：
-#             for i in range(4):
-#                 if i == 1:
-#                     continue
-#                 for j in range(3):
-#                     if j == 2:
-#                         break
-#                     print(i, j)
-#
+# for i in range(4):
+#     if i == 1:
+#         continue
+#     for j in range(3):
+#         if j == 2:
+#             break
+#         print(i, j)
+
+# (i,j)中i不等于1，j=0，1
 # 【下一步】05_循环综合练习.py
 # ==============================================================================
