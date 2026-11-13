@@ -391,10 +391,32 @@ except TypeError as e:
 #
 # 练习 1：写一个函数 `say_hello(name, times)`，按 name 打招呼 times 次。
 #         例如 say_hello("小明", 3) 打印三行「你好，小明！」
+def say_hello(name,times):
+    for i in range(times):
+        print(f"你好，{name}!")
+say_hello("小明", 3)
 # 练习 2：写一个函数 `celsius_to_fahrenheit(c)` 返回华氏温度，
 #         公式 F = C * 9 / 5 + 32，再把 [0, 100, 37] 都转换并打印。
+def celsius_to_fahrenheit(c):
+    F = c*9/5+32
+    return F
+list = [0, 100, 37] 
+for i in range(len(list)):
+    print(f"{celsius_to_fahrenheit(list[i]):.2f}")
 # 练习 3：写一个函数 `statistics(numbers)`，一次返回（最小值, 最大值, 平均值）。
+def statistics(numbers):
+    """返回（最小值, 最大值, 平均值）
+
+    参数:
+        numbers
+
+    返回:
+        （最小值, 最大值, 平均值）
+    """
+    avg = sum(numbers) / len(numbers)
+    return min(numbers),max(numbers),avg
 # 练习 4：给上面所有函数补上规范的 docstring，用 `函数名.__doc__` 检查能不能读到。
+print(statistics.__doc__)
 #
 # 【下一步】02_参数类型.py
 # ==============================================================================
