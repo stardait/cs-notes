@@ -392,7 +392,12 @@ mixed(1, 2, 3, 4, 5, must_kw="必需", extra="额外", x=9)
 # ==============================================================================
 #
 # 练习 1：写 `sum_all(*args)`，返回所有传入数字的和；不传参数时返回 0。
-# 练习 2：写 `build_query(table, **conditions)`，把条件拼成 "users WHERE age=18" 这样的字符串。
+def sum_all(*args):
+    if args == None:
+        return 0
+    else:
+        return sum(args) 
+# 练习 2：写 `build_query(table, **conditions)`，把条件拼成 "users WHERE age=18" 这样的字符串。 
 # 练习 3：亲手复现「列表当默认值」的坑，连续调用三次观察结果；再改成 None 版本对比。
 # 练习 4：把 `create_user(name, *, age, city)` 改造成「仅位置 + 仅关键字」混用的版本。
 #
