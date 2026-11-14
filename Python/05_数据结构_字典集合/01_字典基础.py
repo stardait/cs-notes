@@ -312,7 +312,7 @@ print("\n--- 规矩 2：键必须不可变 ---")
 print({1: "整数键", "name": "字符串键", (1, 2): "元组键", 3.14: "浮点键"})
 
 try:
-    bad = {[1, 2]: "列表当键"}       # 列表可变，不能当键
+    bad = {[1, 2]: "列表当键"}       # type: ignore # 列表可变，不能当键
 except TypeError as e:
     print("列表当键：", e)
 
@@ -382,12 +382,24 @@ print(len(scores), "语文" in scores, 90 in scores, 90 in scores.values())
 #
 # 练习 1：创建一本「单词本」字典，存 5 个单词和中文意思，
 #         然后打印全部、查一个存在的、用 get 查一个不存在的。
+word = {"one":"一","two":"二","three":"三","four":"四","five":"五"}
+print(word)
 #
 # 练习 2：students = {"张三": 85, "李四": 92, "王五": 78}，
 #         遍历打印成「张三 的成绩是 85 分」，并算出平均分。
+students = {"张三": 85, "李四": 92, "王五": 78}
+for name, score in students.items():
+    print(f"{name} 的成绩是 {score} 分")
+average = sum(students.values()) / len(students)
+print(f"平均分是 {average} 分")
 #
 # 练习 3：prices = {"苹果": 5, "香蕉": 3}，完成：
 #         (1) 苹果涨价 2 元  (2) 新增"橘子"4 元  (3) 删除香蕉  (4) 打印剩余
+prices = {"苹果": 5, "香蕉": 3}
+prices["苹果"] += 2
+prices["橘子"] = 4
+del prices["香蕉"]
+print(prices)
 #
 # 练习 4：下面代码有什么问题？怎么改？
 #         d = {"a": 1, "b": 2}
