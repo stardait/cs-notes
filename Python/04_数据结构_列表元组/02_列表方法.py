@@ -44,7 +44,7 @@ return_value = nums.append(3)
 print(f"append(3) 后：{nums}")
 print(f"append() 的返回值：{return_value}")
 
-nums.append([4, 5])
+nums.append([4, 5]) # type: ignore
 print(f"append([4, 5]) 后：{nums}")
 
 nums2 = [1, 2]
@@ -52,7 +52,7 @@ nums2.extend([3, 4])
 print(f"extend([3, 4]) 后：{nums2}")
 
 nums3 = [1, 2]
-nums3.extend("abc")
+nums3.extend("abc") # type: ignore
 print(f"extend('abc') 后：{nums3}")
 
 # 输出：
@@ -379,7 +379,7 @@ print(f"浅拷贝自己：{shallow}")
 # 3. remove(x) 按值删第一个匹配项，找不到报 ValueError
 # 4. pop(i) 按索引删除并返回元素，默认删最后一个；空列表 pop 报 IndexError
 # 5. clear() 清空列表；三者都返回 None
-# 6. index(x) 找不到报 ValueError；count(x) 找不到返回 0
+# 6. inde(x) 找不到报 ValueError；count(x) 找不到返回 0
 # 7. sort() 原地排序返回 None；sorted() 返回新列表
 # 8. sort(key=..., reverse=...) 可以自定义排序规则，并且是稳定排序
 # 9. reverse() 只是倒序，不比较大小；reversed() 返回迭代器
@@ -392,9 +392,38 @@ print(f"浅拷贝自己：{shallow}")
 # ==============================================================================
 #
 # 练习 1：创建购物清单，用 append 加一件商品，用 extend 加三件，用 insert 把牛奶插到最前面。
+shop_list = []
+shop_list.append("pen")
+print(shop_list)
+add_shop_list = ["coke","water","stone"]
+shop_list.extend(add_shop_list)
+print(shop_list)
+shop_list.insert(0,"milk")
+print(shop_list)
 # 练习 2：创建 [5, 3, 8, 1, 9]，先用 sort 升序，再用 reverse 变成降序，打印每一步。
+num = [5, 3, 8, 1, 9]
+print(num)
+num.sort()
+print(num)
+num.reverse()
+print(num)
 # 练习 3：先用 count 统计某个分数出现的次数，再遍历统计 90 分以上的人数。
+score = [90,99,87,87,59,58,95,98,97,96,92,92,92,98,98,98,97,95,92,92,53]
+total = score.count(95)
+gentes = 0
+for i in range(len(score)):
+    if score[i]>90:
+        gentes += 1
+print(total,gentes)
 # 练习 4：创建两个列表，分别用 append 和 extend 合并，观察结果有什么不同。
+one = [1, 2]
+two = [2, 3]
+append_list = one.copy()
+append_list.append(two) # type: ignore
+extend_list = one.copy()
+extend_list.extend(two)
+print(append_list)
+print(extend_list)
 #
 # 【下一步】03_列表推导式.py
 # ==============================================================================
