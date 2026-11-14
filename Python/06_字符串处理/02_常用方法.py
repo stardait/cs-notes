@@ -33,6 +33,11 @@
 #
 # 【重点】因此 `s.strip()` 单独写一行没有意义，必须接住返回值：s = s.strip()
 
+from re import split
+
+from numpy import repeat
+
+
 s = "  Hello  "
 s.strip()                   # 返回值被丢掉了，s 一点没变
 print(repr(s))              # repr 会显示引号，空格看得清清楚楚
@@ -155,7 +160,7 @@ print("-".join(parts))
 
 # 直接拼数字会报错，错误信息写得很清楚
 try:
-    "-".join([1, 2, 3])
+    "-".join([1, 2, 3]) # type: ignore
 except TypeError as e:
     print("TypeError:", e)
 
@@ -346,7 +351,7 @@ print(repr("abcHELLOcba".strip("abc")))     # 左边 abc 和右边 cba 都被削
 
 # 【常见错误 2】join 的参数顺序写反：列表.join(",") 是错的
 try:
-    ["a", "b"].join(",")
+    ["a", "b"].join(",") # type: ignore
 except AttributeError as e:
     print("AttributeError:", e)
 print(",".join(["a", "b"]))                 # 分隔符在前，列表在后
@@ -389,11 +394,22 @@ print("正确判断：", pos != -1)
 # ==============================================================================
 #
 # 练习 1：把 "  Python is FUN  " 清洗成 "python is fun"（用链式调用一行完成）
+k = "  Python is FUN  "
+print(repr(k.strip().lower()))
 # 练习 2：把 "2024-05-01 12:30:00" 拆成年、月、日、时、分、秒，并重新格式化成
 #         "2024年05月01日 12时30分00秒"
+k = "2024-05-01 12:30:00"
+date_part, time_part = k.split(" ")
+year, month, day = date_part.split("-")
+hour, minute, second = time_part.split(":")
+print(f"{year}年{month}月{day}日 {hour}时{minute}分{second}秒")
 # 练习 3：统计一句话里有多少个单词（提示：split() 之后 len）
 # 练习 4：把列表 ["张三", "李四", "王五"] 用「、」连接成一个字符串
+n = ["张三", "李四", "王五"]
+print("、".join(n))
 # 练习 5：判断用户输入的文件名是不是图片（.jpg / .png / .gif，忽略大小写）
+last_in = "Ksandsad.JPG"
+print(last_in.lower().endswith((".jpg",".png",".gif"),-4)) 
 # 练习 6：解释 "hello".strip("hello") 为什么返回空串
 #
 # 【下一步】03_格式化输出.py

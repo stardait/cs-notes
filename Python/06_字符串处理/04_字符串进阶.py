@@ -334,7 +334,7 @@ print(len(nfc), nfc == precomposed, codepoints(nfc))
 #
 # 【常见错误 1】str 和 bytes 混着拼，或者用 str() 去转 bytes
 try:
-    print("abc" + b"def")
+    print("abc" + b"def") # type: ignore
 except TypeError as e:
     print("TypeError:", e)
 print("abc" + b"def".decode())      # 正确：先解码成 str 再拼
@@ -389,6 +389,7 @@ print(len(weird), repr(weird))      # 长度 1，repr 能看到它
 # ==============================================================================
 #
 # 练习 1：用转义字符打印一个三行的收货地址（省、市、详细地址各一行）
+print(f"浙江省\n杭州市\n临平区")
 # 练习 2：打印一个「姓名 + 制表符 + 年龄」的字符串，然后用 repr 检查制表符是否真的存在
 # 练习 3：把 "你好，世界" 分别用 UTF-8 和 GBK 编码，打印字节内容和字节长度
 # 练习 4：把 b'\xe4\xbd\xa0\xe5\xa5\xbd' 解码成文字（提示：UTF-8，结果是「你好」）

@@ -35,6 +35,10 @@
 #     双引号："hello"
 #     三引号："""hello"""   ← 主要用来写多行文本（见 04 号文件）
 
+from pickle import TRUE
+import turtle
+
+
 single = 'Hello'            # 单引号字符串
 double = "Hello"            # 双引号字符串
 print(single == double)     # 内容相同就是相等，和用哪种引号无关
@@ -386,10 +390,27 @@ print(len("abc"), len("中文"))   # 都是「字符个数」，不是字节数
 # ==============================================================================
 #
 # 练习 1：给定 s = "abcdefg"，不用循环，用切片分别取出 "cde"、"aceg"、"gfedcba"
+s = "abcdefg"
+print(s[2:5],s[0:7:2],s[::-1])
 # 练习 2：判断一个字符串是不是回文（正着读反着读一样），如 "上海自来水来自海上"
 #         提示：s == s[::-1]
+def hui(s):
+    if s == s[::-1]:
+        return True
+    else:
+        return False
 # 练习 3：把 "2024-05-01" 拆成 "2024"、"05"、"01" 三个部分并分别打印
+def time(n):
+    print(n[0:4],n[5:7],n[8:10])
+k = time("2024-05-01")
 # 练习 4：用 for 循环统计 "hello world" 里出现了几个字母 "l"
+def countl(n):
+    count = 0
+    for i in n:
+        if i == "l":
+            count +=1
+    return count
+print(countl("hello world"))
 # 练习 5：解释为什么 r"C:\Users\new" 比 "C:\Users\new" 安全（后者会报错！）
 #
 # 【下一步】02_常用方法.py
