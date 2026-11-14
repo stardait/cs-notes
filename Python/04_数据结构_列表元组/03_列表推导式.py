@@ -339,7 +339,7 @@ squares = [secret * secret for secret in range(5)]
 print(f"结果：{squares}")
 
 try:
-    print(secret)
+    print(secret) # type: ignore
 except NameError as e:
     print(f"推导式外访问 secret：NameError: {e}")
 
@@ -385,9 +385,16 @@ except NameError as e:
 # ==============================================================================
 #
 # 练习 1：用推导式生成 1~20 中所有能被 3 整除的数的平方。
+num = [n for n in range(1,21)]
+num_3 = [n*n for n in num if n%3 == 0]
 # 练习 2：把 ["Hello", "WORLD", "Python"] 转成小写，并过滤掉长度小于 5 的单词。
+word = ["Hello", "WORLD", "Python"]
+kword = [n.lower() for n in word if len(n)>5]
 # 练习 3：把 [[1, 2], [3, 4], [5, 6]] 展平，并只保留其中的偶数。
+num_list = [[1, 2], [3, 4], [5, 6]]
+olist = [num for row in num_list for num in row if num%2 ==0]
 # 练习 4：用推导式把 1~30 中「能被 5 整除」的数标成 "Fizz"，其余原样保留。
+result = ["Fizz" if i % 5 == 0 else i for i in range(1, 31)]
 #
 # 【下一步】04_元组.py
 # ==============================================================================

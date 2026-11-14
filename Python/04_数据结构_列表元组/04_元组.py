@@ -103,7 +103,7 @@ point = (3, 4)
 print(f"初始坐标：{point}")
 
 try:
-    point[0] = 10
+    point[0] = 10 # type: ignore
 except TypeError as e:
     print(f"尝试修改元组：TypeError: {e}")
 
@@ -192,7 +192,7 @@ name2, _, score = ("小红", 20, 95)
 print(f"忽略年龄字段：姓名={name2}, 成绩={score}")
 
 try:
-    a, b = (1, 2, 3)
+    a, b = (1, 2, 3) # type: ignore
 except ValueError as e:
     print(f"解包数量不匹配：ValueError: {e}")
 
@@ -313,7 +313,7 @@ todo.append("跑步")
 print(f"待办可以增加：{todo}")
 
 try:
-    weekdays.append("周八")
+    weekdays.append("周八") # type: ignore
 except AttributeError as e:
     print(f"元组没有 append：AttributeError: {e}")
 
@@ -392,9 +392,25 @@ print(f"返回类型：{type(ranked)}")
 # ==============================================================================
 #
 # 练习 1：创建表示「姓名、年龄、城市」的元组，解包后打印成一句话。
+p = ("小明",18,"温州")
+print(f"{p[0]}今年{p[1]}岁，家住{p[2]}")
 # 练习 2：验证 (100) 和 (100,) 的类型，并解释为什么需要那个逗号。
+p1 = (100)
+p2 = (100,)
+print(f"{p1},{p2}")
+#   真正决定「这是不是元组」的是逗号，不是括号。
+#   (42) 只是给 42 加了一对括号，它仍然是 int；
+#   (42,) 才是一个包含一个元素的元组。
+
 # 练习 3：用 namedtuple 定义 Book(title, price)，创建一本书，用 _replace 打折后打印。
+Book = namedtuple("Book",["title","price"])
+b = Book("昆虫记",100)
+b_replace = b.price*0.8
+print(f"{b.title}原价{b.price},现价只要{b_replace}")
 # 练习 4：分别用列表和元组表示「一周七天」，尝试给两者各加一天，观察结果。
+week_list = [i for i in range(1,8)]
+week_tuple = (1,2,3,4,5,6,7)
+
 #
 # 【下一步】05_列表常见陷阱.py
 # ==============================================================================
