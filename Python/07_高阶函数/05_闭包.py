@@ -77,7 +77,7 @@ print(morning("小红"))
 #   hello 记住的是「你好」，morning 记住的是「早上好」，互不影响。
 
 print("自由变量名：", hello.__code__.co_freevars)
-print("单元格内容：", hello.__closure__[0].cell_contents)
+print("单元格内容：", hello.__closure__[0].cell_contents) # type: ignore
 
 # 输出：
 # 自由变量名： ('greeting',)
@@ -130,7 +130,7 @@ print("计数器 B：", counter_b())
 # 【重点】counter_a 和 counter_b 来自两次 make_counter()，
 #   每次调用都会创建一个新的 count 单元格，所以它们互不干扰。
 
-print("A 当前的 count：", counter_a.__closure__[0].cell_contents)
+print("A 当前的 count：", counter_a.__closure__[0].cell_contents) # type: ignore
 
 # 输出：
 # A 当前的 count： 3
@@ -149,7 +149,7 @@ def make_broken_counter():
     count = 0
 
     def counter():
-        count += 1        # 这里没有 nonlocal
+        count += 1        # type: ignore # 这里没有 nonlocal
         return count
 
     return counter

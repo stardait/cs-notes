@@ -382,15 +382,29 @@ print("筛选并排序：", long_words)
 # ==============================================================================
 #
 # 练习 1：用 lambda 写一个判断奇偶的函数，并分别测试 7 和 10
+jo = lambda n: "奇数" if n % 2 != 0 else "偶数"
+print(jo(7),jo(10))
 #
 # 练习 2：把 [("苹果", 3), ("香蕉", 5), ("橙子", 2)] 按数量从多到少排序
 #         提示：sorted(..., key=lambda item: item[1], reverse=True)
+dic_1 = [("苹果", 3), ("香蕉", 5), ("橙子", 2)]
+dic_2 = sorted(dic_1, key=lambda item: item[1], reverse=True)
+print(dic_2)
 #
 # 练习 3：把下面的 lambda 改成等价的 def，并思考哪个更好读：
 #         f = lambda x: "正数" if x > 0 else ("零" if x == 0 else "负数")
+def func(x):
+    if x > 0 :
+        return "正数"
+    elif x == 0:
+        return "零"
+    else:
+        return "负数"
 #
 # 练习 4：解释为什么 [lambda: i for i in range(3)] 里的函数都返回 2，
 #         并写出让它们分别返回 0、1、2 的修改方法
+funcs = [lambda i=i: i for i in range(3)]
+print([func() for func in funcs])   # [0, 1, 2]
 #
 # 【下一步】03_map_filter_reduce.py
 # ==============================================================================

@@ -315,7 +315,7 @@ print("负号 + 元组：", right)
 # 【常见错误 1】把 key 写成「函数调用的结果」
 #   key=len("abc") 得到整数 3，sorted 却需要一个可调用对象
 try:
-    sorted(words2, key=len("abc"))
+    sorted(words2, key=len("abc")) # type: ignore
 except TypeError as e:
     print("错误信息：", e)
 
@@ -339,7 +339,7 @@ print("返回值：", result)
 
 # 【常见错误 3】直接对字典列表排序，忘了写 key
 try:
-    sorted(students)
+    sorted(students) # type: ignore
 except TypeError as e:
     print("错误信息：", e)
 
@@ -386,6 +386,8 @@ print("统一转 int：", sorted(mixed, key=int))
 #
 # 练习 1：把 ["python", "Java", "C", "go"] 按长度从短到长排序；
 #         长度相同的，按字母顺序排
+word_list = ["python", "Java", "C", "go"]
+
 #
 # 练习 2：把 [("苹果", 3), ("香蕉", 5), ("橙子", 2)] 按数量从多到少排序
 #         要求分别用 lambda 和 itemgetter 写一遍

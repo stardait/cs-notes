@@ -381,9 +381,19 @@ except TypeError as e:
 #
 # 练习 1：写 apply_n(func, value, n)，把 func 连续作用 n 次
 #         例如 apply_n(add_one, 0, 3) 应该得到 3
+def apply_n(func,value,n):
+    for i in range(n):
+        func = func(func(value))
+    return func
 #
 # 练习 2：写 make_discount(rate)，返回一个「打 rate 折」的函数
 #         例如 eight_off = make_discount(0.8)，eight_off(100) 得到 80.0
+def make_discount(rate):
+    def discount(price):
+        return price * rate
+    return discount
+half_off = make_discount(0.5)
+print(half_off(200))  # 100.0
 #
 # 练习 3：写一个 check_score(score, rule) 函数，rule 是判断是否及格的函数；
 #         分别传入「60 分及格」和「90 分优秀」两种规则，观察结果

@@ -207,7 +207,7 @@ except TypeError as e:
     print("空序列报错：", e)
 
 # 给了初始值就不会报错，直接返回初始值
-empty_result = reduce(lambda a, b: a + b, [], 0)
+empty_result = reduce(lambda a, b: a + b, [], 0) # type: ignore
 print("空序列 + 初始值：", empty_result)
 
 # 输出：
@@ -382,9 +382,19 @@ except TypeError as e:
 #
 # 练习 1：用 map 把 ["1", "2", "3"] 转成整数列表
 #         再用 reduce 求它们的和
+num1 = ["1", "2", "3"]
+num_list = list(map(int,num1))
+total = reduce(lambda x,y:x+y,num_list)
+print(num_list,total)
 #
 # 练习 2：用 filter 从 1~30 中筛出「能被 3 整除」的数
 #         然后用 map 把它们都平方，最后打印结果
+num1 = [i for i in range(1,31)]
+print(num1)
+num2 = list(filter(lambda x:x%3==0,num1))
+print(num2)
+num3 = list(map(lambda x:x**2,num2))
+print(num3)
 #
 # 练习 3：把下面这段代码改写成列表推导式，比较哪种更好读：
 #         result = list(map(lambda x: x * 10, filter(lambda x: x > 0, nums)))
