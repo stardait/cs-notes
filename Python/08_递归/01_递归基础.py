@@ -251,11 +251,7 @@ factorial_trace(4)
 # 【重点】这个上限不是「能算多大的数」，而是「能套多少层」。
 #   factorial(500) 只要 500 层，没问题；factorial(2000) 要 2000 层，直接报错。
 
-from decimal import IEEE_CONTEXT_MAX_BITS
-from shutil import register_unpack_format
 import sys
-
-from numpy import piecewise
 
 print("\n--- 递归深度限制 ---")
 print(f"当前递归深度上限：{sys.getrecursionlimit()}")

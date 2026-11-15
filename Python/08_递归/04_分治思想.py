@@ -319,7 +319,6 @@ print(f"排序 [1, 2, 3, 4, 5]：{quick_sort([1, 2, 3, 4, 5])}")
 # 归并排序每次对半切，切 log2(n) 层，每层合并 O(n)，总共 O(n log n)。
 
 import math
-from turtle import pensize
 
 print("\n--- 把问题对半切，几次能切到 1 ---")
 for n in (10, 100, 1000, 1000000):
