@@ -319,6 +319,7 @@ print(f"排序 [1, 2, 3, 4, 5]：{quick_sort([1, 2, 3, 4, 5])}")
 # 归并排序每次对半切，切 log2(n) 层，每层合并 O(n)，总共 O(n log n)。
 
 import math
+from turtle import pensize
 
 print("\n--- 把问题对半切，几次能切到 1 ---")
 for n in (10, 100, 1000, 1000000):
@@ -381,6 +382,13 @@ print("O(2^n)    指数：朴素递归的斐波那契、汉诺塔")
 #
 # 练习 1：用递归写 find_max(arr)，返回列表最大值
 #         提示：len(arr) == 1 时返回 arr[0]，否则返回 max(arr[0], find_max(arr[1:]))
+def find_max(arr):
+    if len(arr) == 1:
+        return arr[0]
+    return max(arr[0],find_max(arr[1:]))
+k = [123,123,43,4245,2,3423,4]
+print(find_max(k))
+print(max(k))
 #
 # 练习 2：改写 binary_search，让它返回「目标应该插入的位置」
 #         提示：找不到时，low 正好是第一个比 target 大的元素下标
@@ -388,6 +396,44 @@ print("O(2^n)    指数：朴素递归的斐波那契、汉诺塔")
 #
 # 练习 3：给归并排序加一个计数器，统计 merge 一共被调用了多少次
 #         用 8 个元素的列表测试，答案应该是 7 次（n-1 次）
+def make_counter():
+    count = 0
+    def counter():
+        nonlocal count
+        count += 1
+        return count
+    return counter
+
+def merge(left, right, counter=None):
+    if counter:                      # ② 每次 merge 先计数
+        counter()
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i]); i += 1
+        else:
+            result.append(right[j]); j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+def merge_sort(arr, counter=None):   # ③ 计数器作为参数，一路传下去
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid], counter)
+    right = merge_sort(arr[mid:], counter)
+    return merge(left, right, counter)
+
+# 使用：只在最外层创建一次
+counter = make_counter()
+data = [38, 27, 43, 3, 9, 82, 10, 5, 52, 85, 54]
+sorted_data = merge_sort(data, counter)
+
+print(f"排序前：{data}")
+print(f"排序后：{sorted_data}")
+print(f"merge 调用次数：{counter()-1}")
 #
 # 练习 4：用「三数取中」改写快速排序的 pivot 选择
 #         提示：取 arr[0]、arr[中间]、arr[-1] 三个数的中位数

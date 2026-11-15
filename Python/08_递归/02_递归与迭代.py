@@ -370,10 +370,24 @@ print("循环版 1..100000 =", sum(range(1, 100001)))
 # 练习 1：分别用递归和循环写 find_max(items)，返回列表最大值
 #         递归思路：max(第一个, find_max(剩下的))
 #         用 [3, 9, 2, 7, 5] 测试，两种写法都应该返回 9
+def dinf_max(items):
+    if len(items) == 1:
+        return items[0]
+    return max(items[0], dinf_max(items[1:]))
+item = [3, 9, 2, 7, 5]
+print(dinf_max(item))
 #
 # 练习 2：打印 fib(6) 的递归调用树（用缩进），并数一数一共多少个节点
 #         提示：节点数满足 calls(n) = 1 + calls(n-1) + calls(n-2)，calls(0)=calls(1)=1
 #         答案：fib(6) 一共 25 个节点
+def fib(n):
+    def calls(x):
+        if x == 0 or x == 1:
+            return 1
+        return 1 + calls(x - 1) + calls(x - 2)
+    return calls(n)
+
+print(fib(6))
 #
 # 练习 3：用显式栈改写 nested_sum，处理 [1, [2, 3, [4, 5]], 6]（结果应为 21）
 #         提示：栈里既可以放数字，也可以放列表；遇到列表就继续拆

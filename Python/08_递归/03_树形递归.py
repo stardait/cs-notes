@@ -59,6 +59,9 @@
 # 【重点】定义里出现了两次「自己」，所以调用树会分叉。
 #   写成代码只需要三行，但它的效率低得惊人。
 
+from re import X
+
+
 def fib(n):
     if n < 2:                           # 终止条件：F(0)=0, F(1)=1
         return n
@@ -385,12 +388,25 @@ print(f"前两个结果：{bug_result[0]} / {bug_result[1]}")
 #
 # 练习 1：写 fib_sum(n)，返回 F(0)+F(1)+...+F(n) 的和
 #         提示：边走递归边累加，验证 fib_sum(5) = 0+1+1+2+3+5 = 12
+def fib_sum(n):
+    def F(x):
+        if x >= 2:
+            return F(x-1) + F(x-2)
+        else:
+            return x
+    if n == 0:
+        return 0
+    return F(n) + fib_sum(n-1)
+print(fib_sum(5))
 #
 # 练习 2：改写 hanoi，把每一步记录到列表里返回，而不是直接打印
 #         提示：加一个 moves 参数，元素可以是 ("A", "C") 元组，hanoi(3) 应返回 7 个
 #
 # 练习 3：给全排列加上去重功能，输入 [1, 1, 2]，期望输出 [1,1,2] [1,2,1] [2,1,1]
 #         提示：先排序，然后在循环里跳过「和前一个相同」的元素
+def all_ov(list):
+    for i in range(len(list)):
+        if 
 #
 # 练习 4：写递归函数 is_palindrome(s)，判断回文
 #         提示：s[0] == s[-1] 且 s[1:-1] 也是回文，终止条件是长度 ≤ 1

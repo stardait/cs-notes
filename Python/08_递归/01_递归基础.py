@@ -251,7 +251,11 @@ factorial_trace(4)
 # 【重点】这个上限不是「能算多大的数」，而是「能套多少层」。
 #   factorial(500) 只要 500 层，没问题；factorial(2000) 要 2000 层，直接报错。
 
+from decimal import IEEE_CONTEXT_MAX_BITS
+from shutil import register_unpack_format
 import sys
+
+from numpy import piecewise
 
 print("\n--- 递归深度限制 ---")
 print(f"当前递归深度上限：{sys.getrecursionlimit()}")
@@ -383,18 +387,44 @@ except RecursionError:
 # 练习 1：写递归函数 power(base, exp)，计算 base 的 exp 次方
 #         提示：base ** exp = base * power(base, exp - 1)，终止条件 exp == 0 返回 1
 #         验证：power(2, 10) 应该等于 1024
+def power(base,exp):
+    if exp == 0:
+        return 1
+    return base * power(base,exp-1)
+print(power(2,10))
 #
 # 练习 2：写递归函数 sum_even(n)，求 1..n 中所有偶数的和
 #         提示：如果 n 是偶数，就是 n + sum_even(n - 1)；否则直接 sum_even(n - 1)
 #         验证：sum_even(10) = 2 + 4 + 6 + 8 + 10 = 30
+def sum_even(n):
+    if n <= 0:
+        return 0
+    else:
+        if n%2 == 0:
+            return n + sum_even(n-1)
+        else:
+            return sum_even(n-1)
+print(sum_even(10))
 #
 # 练习 3：写递归函数 count_digits(n)，求正整数 n 的位数
 #         提示：n < 10 时返回 1，否则 1 + count_digits(n // 10)
 #         验证：count_digits(2026) = 4
+def count_disgits(n):
+    if n < 10:
+        return 1
+    else:
+        return 1 + count_disgits(n//10)
+print(count_disgits(2026))
 #
 # 练习 4：写递归函数 reverse_print(s)，把字符串倒着打印出来（不要用 s[::-1]）
 #         提示：先递归处理 s[1:]，再打印 s[0]
 #         验证：reverse_print("abc") 依次打印 c、b、a
+def reverse_print(s):
+    if s[1:] == None:
+        print(s[0])
+    else:
+        return s[1:]+s[0]
+print(reverse_print("abc"))
 #
 # 【下一步】02_递归与迭代.py
 # ==============================================================================
