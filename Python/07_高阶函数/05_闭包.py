@@ -57,6 +57,12 @@
 #   正常情况下，函数一结束，局部变量就销毁；
 #   但如果内层函数还引用着它，Python 会把它放进一个「单元格」（cell）里保留。
 
+from ast import Nonlocal
+from itertools import count
+import re
+from turtle import reset
+
+
 def make_greeting(greeting):
     def say(name):
         return f"{greeting}，{name}！"
@@ -102,7 +108,7 @@ print("单元格内容：", hello.__closure__[0].cell_contents) # type: ignore
 #   nonlocal count 的意思是：
 #   「count 不是我的局部变量，去上一层函数里找」。
 
-def make_counter():
+def make_counter(): # type: ignore
     count = 0
 
     def counter():
@@ -382,13 +388,53 @@ print("shared_b：", shared_b())
 #
 # 练习 1：写 make_power(exp)，返回一个「求 x 的 exp 次方」的函数，
 #         分别生成平方函数和立方函数并测试
+def make_power(exp):
+    def power(x):
+        return x**exp
+    return power
+
+a = make_power(2)
+b = make_power(3)
+print(a(5),b(4))
 #
 # 练习 2：写 make_counter(start)，让计数器从 start 开始，
 #         并额外提供一个 reset() 函数把计数归零
+def make_counter(start):
+    count = start
+
+    def increment(): 
+        nonlocal count
+        count += 1
+        return count
+
+    def reset():
+        nonlocal count
+        count = 0
+        return count
+
+    return increment, reset
+
+inc, rst = make_counter(3)
+
+print(inc())
+print(inc())
+print(rst())
+print(inc())
 #
 # 练习 3：写 make_accumulator()，返回一个函数：
 #         每次传入一个数字，就返回目前为止的总和
 #         例如依次传入 10、20、5，应分别返回 10、30、35
+def make_accumulator():
+    tatal = 0
+    def sum_tatal(x):
+        nonlocal tatal
+        tatal += x
+        return tatal
+    return sum_tatal
+a = make_accumulator()
+print(a(10))
+print(a(20))
+print(a(5))
 #
 # 练习 4：解释为什么下面这些函数都返回 2，并改成返回 0、1、2：
 #         funcs = [lambda: i for i in range(3)]

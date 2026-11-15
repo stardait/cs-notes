@@ -155,7 +155,7 @@ def log_calls(func):
 
 
 @log_calls
-def add(a, b):
+def add(a, b): # type: ignore
     return a + b
 
 
@@ -189,7 +189,11 @@ print(introduce("小明", age=20))
 # 装饰之后，say_goodbye 这个名字其实指向 wrapper。
 # 于是原函数的 __name__、__doc__ 都被 wrapper 覆盖了，调试时很误导。
 
+from ast import arg
 import functools
+from unittest import result
+
+from pymupdf import b
 
 
 def plain_decorator(func):
@@ -375,6 +379,19 @@ except TypeError as e:
 #
 # 练习 1：写一个 timer 装饰器，在函数执行前后打印「开始 / 结束」
 #         并用它装饰一个求和函数
+def tst(func):
+    def wrapper(*args, **kwargs):
+        print("开始")
+        result = func(*args, **kwargs)
+        print(result)
+        print("结束")
+    return wrapper
+
+def add(a, b):
+    return a + b
+
+star_1 = tst(add)
+star_1(2, 3)
 #
 # 练习 2：写一个 ensure_positive 装饰器，如果函数返回负数就改成 0
 #         提示：在 wrapper 里判断 result
